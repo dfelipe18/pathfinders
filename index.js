@@ -26,7 +26,7 @@ app.get('/crear', async (_req, res) => {
   return res.send('ok')
 })
 
-app.delete('/eliminar/:id', async (req, res) => {
+app.get('/eliminar/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
