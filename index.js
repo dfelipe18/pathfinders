@@ -8,7 +8,7 @@ const Electrodomestico = mongoose.model('Electrodomestico', new mongoose.Schema(
 
 const app = express()
 
-mongoose.connect('mongodb://admin:admin@localhost:27017/miapp?authSource=admin')
+mongoose.connect('mongodb://admin:admin@container-mongo:27017/miapp?authSource=admin')
 
 app.get('/', async (_req, res) => {
   console.log('listando... Electrodomesticos...')
@@ -38,3 +38,4 @@ app.get('/eliminar/:id', async (req, res) => {
 });
 
 app.listen(3000, () => console.log('listening...'))
+
