@@ -26,4 +26,15 @@ app.get('/crear', async (_req, res) => {
   return res.send('ok')
 })
 
+app.delete('/eliminar/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await Electrodomestico.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Producto eliminado correctamente' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al eliminar el producto' });
+  }
+});
+
 app.listen(3000, () => console.log('listening...'))
