@@ -8,8 +8,7 @@ const Electrodomestico = mongoose.model('Electrodomestico', new mongoose.Schema(
 
 const app = express()
 
-//mongoose.connect('mongodb://admin:admin@localhost:27017/miapp?authSource=admin')
-mongoose.connect('mongodb://admin:admin@container-mongo:27017/miapp?authSource=admin')
+mongoose.connect('mongodb://admin:admin@localhost:27017/miapp?authSource=admin')
 
 app.get('/', async (_req, res) => {
   console.log('listando... Electrodomesticos...')
@@ -26,5 +25,16 @@ app.get('/crear', async (_req, res) => {
   await Electrodomestico.create({ nombre: 'Freidora', marca: 'LG' })
   return res.send('ok')
 })
+
+app.delete('/eliminar/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await Electrodomestico.findByIdAndDelete(id);
+    res.status(200).json({ message: 'Producto eliminado correctamente' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al eliminar el producto' });
+  }
+});
 
 app.listen(3000, () => console.log('listening...'))
