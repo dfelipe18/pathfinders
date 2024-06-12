@@ -13,6 +13,13 @@ class ApplianceService {
   async delete(id) {
     return await Appliance.findByIdAndDelete(id);
   }
+
+  async update(id, updatedData) {
+    const updatedAppliance = await Appliance.findByIdAndUpdate(id, updatedData, { new: true });
+    return updatedAppliance;
+  }
+
+  
 }
 
 export default new ApplianceService();

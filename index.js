@@ -15,7 +15,9 @@ app.use('/uploads', express.static(uploadsDirPath));
 // Routes
 app.get('/appliances', applianceController.listAll);
 app.post('/appliances', applianceController.create);
+app.put('/appliances/:id', applianceController.update);
 app.delete('/appliances/:id', applianceController.delete);
+
 
 
 app.listen(3000, () => console.log('Server listening on port 3000'));

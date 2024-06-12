@@ -50,6 +50,18 @@ class ApplianceController {
     });
   }
 
+  async update(req, res) {
+    try {
+      const updatedAppliance = await applianceService.update(req.params.id, req.body);
+      if (!updatedAppliance) {
+        return res.status(404).json({ message: 'Appliance not found' });
+      }
+      res.json(updatedAppliance);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
   async delete(req, res) {
     try {
       const deletedAppliance = await applianceService.delete(req.params.id);
