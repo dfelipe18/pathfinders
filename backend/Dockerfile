@@ -1,6 +1,7 @@
 FROM node:18
 
 RUN mkdir -p /home/app
+RUN mkdir -p /home/app/uploads
 
 COPY . /home/app
 
