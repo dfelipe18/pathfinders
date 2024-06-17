@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -8,7 +9,6 @@
 
 </head>
 <body class="body-login">
-<!-- partial:index.partial.html -->
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
@@ -43,7 +43,17 @@
 		</div>		
 	</div>
 </div>
-<!-- partial -->
   
 </body>
 </html>
+-->
+
+<nav>
+  <ul>
+	<li>
+	  <a routerLinkActive="activebutton" routerLink="/cart" >Carts</a>
+	  <a routerLinkActive="activebutton" routerLink="/products">Products</a>
+	</li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
