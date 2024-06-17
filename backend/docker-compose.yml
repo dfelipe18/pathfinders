@@ -6,6 +6,8 @@ services:
       - "3000:3000"
     links:
       - container-mongo
+    volumes:
+      - ./uploads:/home/app/uploads
   container-mongo:
     image: mongo
     ports:
