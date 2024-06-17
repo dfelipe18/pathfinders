@@ -4,7 +4,8 @@ import path from 'path';
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    debugger;
+    cb(null, '/home/app/uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -32,23 +33,27 @@ class ApplianceController {
 
     async create(req, res) {
         upload.single('image')(req, res, async (err) => {
-        if (err) {
-            return res.status(500).json({ message: err.message });
-        }
 
-        try {
-            const newApplianceData = {
-            ...req.body,
-            image: req.file ? req.file.filename : null
-            };
+        console.log("Archivo recibido:", req.file);
 
-            const newAppliance = await applianceService.create(newApplianceData);
-            res.status(201).json(newAppliance);
-        } catch (error) {
-            res.status(500).json({ message: error.message });
-        }
-    });
-  }
+          if (err) {
+              console.error("Error al subir el archivo:", err);
+              return res.status(500).json({ message: "Error al subir el archivo" });
+          }
+          try {
+              const newApplianceData = {
+              ...req.body,
+              image: req.file ? req.file.filename : null
+              };
+
+              const newAppliance = await applianceService.create(newApplianceData);
+              res.status(201).json(newAppliance);
+          } catch (error) {
+              console.error("Error al guardar el electrodoméstico:", error);
+              res.status(500).json({ message: error.message });
+          }
+        });
+      }
 
   async update(req, res) {
     try {

@@ -7,6 +7,7 @@ const app = express();
 app.use(express.json());
 
 mongoose.connect('mongodb://admin:admin@container-mongo:27017/app?authSource=admin');
+//mongoose.connect('mongodb://admin:admin@127.0.0.1:27017/app?authSource=admin');
 
 // Configuración para servir archivos estáticos desde la carpeta 'uploads'
 const uploadsDirPath = path.join(process.cwd(), 'uploads'); 
