@@ -1,1 +1,36 @@
-<router-outlet></router-outlet>
+<div class="container-general">
+  <nav class="header-nav">
+    <section class="left-nav">
+      <button mat-mini-fab (click)="opened = !opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <h1 class="title-page">Smart Solutions</h1>
+    </section>
+    <section class="right-nav">
+      <h4 class="username">Pepito Aguilar</h4>
+      <button mat-icon-button>
+        <mat-icon>person</mat-icon>
+      </button>
+    </section>
+  </nav>
+  <mat-sidenav-container class="container-sidenav" autosize>
+    <mat-sidenav [(opened)]="opened" class="sidenav-drawer" mode="side" opened>
+      <mat-list class="general-list">
+        <mat-list-item class="list-item">
+          <a mat-button routerLink="/inicio"><mat-icon>home</mat-icon>Inicio</a>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item class="list-item">
+          <a mat-button routerLink="/tus-productos"
+            ><mat-icon> lists</mat-icon>Tus productos</a
+          >
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+
+    <div class="container-pages">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+</div>
