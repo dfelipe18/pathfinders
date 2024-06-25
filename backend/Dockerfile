@@ -1,11 +1,16 @@
-FROM node:18
+FROM node:18-alpine
 
-RUN mkdir -p /home/app
+WORKDIR /home/app
+
+COPY package*.json ./
+
+RUN npm ci --only=production
+
+COPY . .
+
 RUN mkdir -p /home/app/uploads
 RUN chown -R node:node /home/app/uploads
 
-COPY . /home/app
-
 EXPOSE 3000
 
-CMD ["node", "/home/app/index.js"]
+CMD ["node", "index.js"]
