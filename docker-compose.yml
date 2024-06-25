@@ -11,7 +11,7 @@ services:
     networks:
       - networkDocker
     volumes:
-      - ./uploads:/home/app/uploads
+      - ./backend/src/uploads:/home/app/uploads
     depends_on:
       - container-frontend
   container-frontend:
