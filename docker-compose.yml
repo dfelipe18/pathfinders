@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  container-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    links:
+      - container-database
+    networks:
+      - networkDocker
+    volumes:
+      - ./uploads:/home/app/uploads
+    depends_on:
+      - container-frontend
+  container-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - networkDocker
+  container-database:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - networkDocker
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - mongo-data:/data/db
+  container-jenkins:
+    container_name: container-jenkins
+    image: jenkins/jenkins:alpine
+    ports:
+      - "8081:8080"
+      - "50001:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    restart: always
+    networks:
+      - networkDocker
+
+volumes:
+  mongo-data:
+  jenkins_home:
+
+networks:
+  networkDocker:
