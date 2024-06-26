@@ -15,6 +15,7 @@ export interface IRequestBodyAppliances {
   brand: string;
   description: string;
   price: number;
+  quantity: number;
 }
 
 export interface IModifyBodyAppliances {
@@ -22,6 +23,7 @@ export interface IModifyBodyAppliances {
   brand?: string;
   description?: string;
   price?: number;
+  quantity?: number;
 }
 
 export interface IDeleteAppliance {

@@ -1,1 +1,40 @@
-<p>managment-products works!</p>
+<h2 class="title">{{ titlePage }}</h2>
+
+<div class="container-form">
+  <form class="form-control" [formGroup]="productForm">
+    <div class="field">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre:</mat-label>
+        <input matInput required placeholder="Nombre del producto" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Marca:</mat-label>
+        <input matInput required placeholder="Marca del producto" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="field">
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción:</mat-label>
+        <input matInput required placeholder="Descripción del producto" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="field">
+      <mat-form-field appearance="outline">
+        <mat-label>Precio:</mat-label>
+        <input matInput required placeholder="Precio del producto" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Cantidad:</mat-label>
+        <input matInput required placeholder="Cantidad disponible" />
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="field"></div>
+  </form>
+</div>
