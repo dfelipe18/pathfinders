@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  container-backend:
+    container_name: container-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - networkDocker
+    volumes:
+      - ./backend/src/uploads:/home/app/uploads
+
+networks:
+  networkDocker:
