@@ -11,6 +11,21 @@ services:
       - networkDocker
     volumes:
       - ./src/uploads:/home/app/uploads
+    links:
+      - container-database
+  container-database:
+    container_name: container-database
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - networkDocker
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    restart: always
+    volumes:
+      - mongo-data:/data/db
 
 networks:
   networkDocker:
