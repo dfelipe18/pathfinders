@@ -1,21 +1,30 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { AppliancesService } from '../../../infrastructure/services/appliances/appliances.service';
-import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { NgFor, NgIf } from '@angular/common';
+import { IResGetAppliances } from '../../../infrastructure/models/appliances.model';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgFor, NgIf],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss',
 })
-export class ProductsListComponent implements AfterViewInit {
-  dataAppliances$!: Observable<any[]>;
-  
-  constructor(private service: AppliancesService) {}
+export class ProductsListComponent {
+  dataAppliances!: IResGetAppliances[];
 
-  ngAfterViewInit(): void {
-    this.dataAppliances$ = this.service.getAppliances();
+  constructor(private service: AppliancesService) {
+    this.onCallAppliances();
+  }
+
+  onCallAppliances(): void {
+    this.service.getAppliances().subscribe({
+      next: (data: IResGetAppliances[]) => {
+        this.dataAppliances = data;
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
 }
