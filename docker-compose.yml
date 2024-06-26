@@ -21,7 +21,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "4201:80"
     networks:
       - networkDocker
   container-database:
