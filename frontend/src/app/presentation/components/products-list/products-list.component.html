@@ -1,12 +1,21 @@
 <h2>Electrodomésticos</h2>
-<div class="container-appliance" *ngFor="let appliance of dataAppliances">
-  <p>Marca: {{ appliance.brand }}</p>
-  <p>Nombre: {{ appliance.name }}</p>
-  <p>Descripción: {{ appliance.description }}</p>
+<div class="container-elements">
+  <mat-card
+    appearance="outlined"
+    class="container-appliance"
+    *ngFor="let appliance of dataAppliances"
+  >
+    <mat-card-header class="container-header">
+      <mat-card-title>Marca: {{ appliance.brand }}</mat-card-title>
+      <mat-card-subtitle>Nombre: {{ appliance.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content class="container-content">
+      Descripción: {{ appliance.description }}
+    </mat-card-content>
+  </mat-card>
 </div>
-<div
-  class="empty-appliances"
-  *ngIf="!dataAppliances"
->
+
+<div class="empty-appliances" *ngIf="!dataAppliances">
   No tienes electrodomésticos por el momento
 </div>
