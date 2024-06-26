@@ -4,7 +4,8 @@ WORKDIR /home/app
 
 COPY package*.json ./
 
-RUN npm ci --only=production
+# RUN npm ci --only=production
+RUN npm ci
 
 COPY . .
 
