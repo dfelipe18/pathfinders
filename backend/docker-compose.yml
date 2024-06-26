@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  container-backend:
+    container_name: container-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - networkDocker
+    volumes:
+      - . :/home/app/uploads
+    links:
+      - container-database
+  container-database:
+    container_name: container-database
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - networkDocker
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+
+networks:
+  networkDocker:
