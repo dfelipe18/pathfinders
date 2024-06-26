@@ -1,3 +1,41 @@
 .title {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  .icon {
+    margin-left: 1rem;
+  }
+}
+
+.container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .field,
+  .input-desc {
+    width: 100%;
+
+    .input-name,
+    .input-price {
+      padding-right: 1rem;
+    }
+
+    .input-brand,
+    .input-quantity {
+      padding-left: 0 1rem;
+    }
+  }
+
+  .field.container-buttons {
+    display: flex;
+    justify-content: space-evenly;
+
+    .button {
+      width: 8rem;
+    }
+  }
 }
