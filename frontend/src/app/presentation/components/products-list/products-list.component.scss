@@ -2,12 +2,16 @@
   width: 25rem;
 }
 
+.title {
+  text-align: center;
+}
+
 .container-elements {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   align-items: center;
-  padding: 1rem 3rem 0 1rem;
+  padding: 1rem 1rem 0 1rem;
 }
 
 .container-header {

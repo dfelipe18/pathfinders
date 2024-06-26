@@ -9,3 +9,21 @@ export interface IResGetAppliances {
   __v: number;
   imageUrl: null | string;
 }
+
+export interface IRequestBodyAppliances {
+  name: string;
+  brand: string;
+  description: string;
+  price: number;
+}
+
+export interface IModifyBodyAppliances {
+  name?: string;
+  brand?: string;
+  description?: string;
+  price?: number;
+}
+
+export interface IDeleteAppliance {
+  message: string;
+}

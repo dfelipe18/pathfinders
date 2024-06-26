@@ -20,4 +20,18 @@ export const routes: Routes = [
         './presentation/components/products-list/products-list.component'
       ).then((c) => c.ProductsListComponent),
   },
+  {
+    path: 'editar-productos',
+    loadComponent: () =>
+      import(
+        './presentation/components/managment-products/managment-products.component'
+      ).then((c) => c.ManagmentProductsComponent),
+  },
+  {
+    path: 'crear-productos',
+    loadComponent: () =>
+      import(
+        './presentation/components/managment-products/managment-products.component'
+      ).then((c) => c.ManagmentProductsComponent),
+  },
 ];
