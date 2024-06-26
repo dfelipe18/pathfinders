@@ -1,31 +1,127 @@
-section {
-  display: table;
-}
-
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  display: table-cell;
-  max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.example-button-container {
+.container-general {
   display: flex;
   justify-content: center;
-  width: 120px;
+  height: 100%;
+}
+
+.container-content {
+  width: 100%;
+  padding: 20px;
+}
+
+.container-tittle {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.container-tittle h1 {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  color: #0dd;
+  border-bottom: #0dd 5px solid;
+  padding-bottom: 10px;
+}
+
+.container-imgs-one,
+.container-imgs-two {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.container-imgs-one>div,
+.container-imgs-two>div {
+  width: 30%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  perspective: 1000px;
+}
+
+.container-imgs-one>div::before,
+.container-imgs-two>div::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  transform: scale(1) rotateY(0);
+}
+
+.first-container::before {
+  background-image: url('https://content-cocina.lecturas.com/medio/2021/07/13/freidora-sin-aceite-de-lidl-patatas_68ef2045_1200x1200.jpeg');
+}
+
+.secound-container::before {
+  background-image: url('https://content-cocina.lecturas.com/medio/2021/07/13/freidora-sin-aceite-de-lidl-patatas_68ef2045_1200x1200.jpeg');
+}
+
+.third-container::before {
+  background-image: url('https://content-cocina.lecturas.com/medio/2021/07/13/freidora-sin-aceite-de-lidl-patatas_68ef2045_1200x1200.jpeg');
+}
+
+.first-container-imgs::before {
+  background-image: url('https://content-cocina.lecturas.com/medio/2021/07/13/freidora-sin-aceite-de-lidl-patatas_68ef2045_1200x1200.jpeg');
+}
+
+.secound-container-imgs::before {
+  background-image: url('https://content-cocina.lecturas.com/medio/2021/07/13/freidora-sin-aceite-de-lidl-patatas_68ef2045_1200x1200.jpeg');
+}
+
+.third-container-imgs::before {
+  background-image: url('https://content-cocina.lecturas.com/medio/2021/07/13/freidora-sin-aceite-de-lidl-patatas_68ef2045_1200x1200.jpeg');
+}
+
+.container-imgs-one>div:hover::before,
+.container-imgs-two>div:hover::before {
+  transform: scale(1.2) rotateY(15deg);
+  filter: brightness(1.1);
+}
+
+.container-imgs-two>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+}
+
+.container-imgs-two h1 {
+  position: relative;
+  z-index: 1;
+  font-size: 18px;
+}
+
+.third-container {
+  width: 60% !important;
+  margin: 0px 14px 0px 14px !important;
+}
+
+.secound-container {
+  width: 20% !important;
+  margin: 0px 14px 0px 14px !important;
+}
+
+.first-container {
+  width: 20% !important;
+  margin: 0px 14px 0px 14px !important;
+}
+
+.third-container-imgs {
+  width: 20% !important;
+  margin: 0px 14px 0px 14px !important;
+}
+
+.secound-container-imgs {
+  width: 60% !important;
+  margin: 0px 14px 0px 14px !important;
+}
+
+.first-container-imgs {
+  width: 20% !important;
+  margin: 0px 14px 0px 14px !important;
 }
