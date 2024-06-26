@@ -35,12 +35,13 @@ describe('ApplianceService', () => {
 
   it('should delete an appliance', async () => {
     const applianceId = '1';
+    const applianceIdError = '2';
     Appliance.findByIdAndDelete.mockResolvedValue({ _id: applianceId });
 
     const deletedAppliance = await applianceService.delete(applianceId);
 
-    expect(Appliance.findByIdAndDelete).toHaveBeenCalledWith(applianceId);
-    expect(deletedAppliance).toEqual({ _id: applianceId });
+    expect(Appliance.findByIdAndDelete).toHaveBeenCalledWith(applianceIdError);
+    expect(deletedAppliance).toEqual({ _id: applianceIdError });
   });
   it('should update an appliance', async () => {
     const applianceId = '1';
