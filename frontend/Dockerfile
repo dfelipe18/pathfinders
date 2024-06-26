@@ -1,8 +1,11 @@
-FROM node:latest-alpine
+FROM node:latest as build
 
 WORKDIR /app
 
 COPY package*.json ./
+
+# Instala apk 
+RUN apt-get update && apt-get install -y nodejs npm
 
 RUN npm ci
 
