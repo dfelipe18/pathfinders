@@ -10,8 +10,6 @@ RUN npm install -g @angular/cli
 
 COPY . .
 
-RUN npm run build
-
 FROM nginx:latest
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
