@@ -5,12 +5,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {
+  MatSnackBar,
+  MatSnackBarAction,
+  MatSnackBarActions,
+  MatSnackBarLabel,
+  MatSnackBarRef,
+} from '@angular/material/snack-bar';
+import {
   FormControl,
   FormGroup,
   FormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AppliancesService } from '../../../infrastructure/services/appliances/appliances.service';
+import { IRequestBodyAppliances } from '../../../infrastructure/models/appliances.model';
 
 @Component({
   selector: 'app-managment-products',
@@ -33,7 +42,9 @@ export class ManagmentProductsComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private service: AppliancesService,
+    private _snackBar: MatSnackBar
   ) {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -53,6 +64,7 @@ export class ManagmentProductsComponent implements OnInit {
     } else {
       this.onOrganiceEditView();
     }
+    this.openSnackBar('lelele', 'epepe');
   }
 
   onOrganiceCreateView(): void {
@@ -63,11 +75,19 @@ export class ManagmentProductsComponent implements OnInit {
     this.titlePage = '¡Edita tu producto!';
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+      verticalPosition: 'top'
+    });
+  }
+
   onSubmit() {
     if (this.productForm.valid) {
-      console.log(this.productForm.value);
-    } else {
-      console.log('Form not valid');
+      this.service.setAppliance(this.productForm.value).subscribe({
+        next: (data: IRequestBodyAppliances) => {},
+        error: (err: Error) => {},
+      });
     }
   }
 }

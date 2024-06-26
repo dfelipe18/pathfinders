@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import {
   IDeleteAppliance,
@@ -13,16 +13,22 @@ import {
   providedIn: 'root',
 })
 export class AppliancesService {
+  private products!: Subject<IResGetAppliances[]>;
+
   constructor(private http: HttpClient) {}
 
   getAppliances(): Observable<IResGetAppliances[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.get<IResGetAppliances[]>(
-      `${environment.URL_APPLIANCES}/appliances`,
-      {
+    return this.http
+      .get<IResGetAppliances[]>(`${environment.URL_APPLIANCES}/appliances`, {
         headers,
-      }
-    );
+      })
+      .pipe(
+        map((res) => {
+          this.setConsultedProducts(res);
+          return res;
+        })
+      );
   }
 
   setAppliance(
@@ -60,5 +66,13 @@ export class AppliancesService {
         headers,
       }
     );
+  }
+
+  getConsultedProducts(): Observable<IResGetAppliances[]> {
+    return this.products;
+  }
+
+  setConsultedProducts(products: IResGetAppliances[]): void {
+    this.products.next(products);
   }
 }
