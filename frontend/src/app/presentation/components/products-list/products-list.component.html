@@ -1,0 +1,12 @@
+<h2>Electrodomésticos</h2>
+<div class="container-appliance" *ngFor="let appliance of dataAppliances">
+  <p>Marca: {{ appliance.brand }}</p>
+  <p>Nombre: {{ appliance.name }}</p>
+  <p>Descripción: {{ appliance.description }}</p>
+</div>
+<div
+  class="empty-appliances"
+  *ngIf="!dataAppliances"
+>
+  No tienes electrodomésticos por el momento
+</div>

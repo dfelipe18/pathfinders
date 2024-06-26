@@ -1,13 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-
 import { AppComponent } from './app.component';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { ActivatedRoute, provideRouter } from '@angular/router';
+import { routes } from './app.routes';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent],
+      imports: [AppComponent],
+      providers: [
+        provideNoopAnimations(),
+        provideRouter(routes),
+      ]
     }).compileComponents();
   });
 
@@ -16,4 +20,11 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
+
+  it(`should have the 'opened' in true`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.opened).toEqual(true);
+  });
+
 });

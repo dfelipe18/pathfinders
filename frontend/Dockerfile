@@ -1,17 +1,21 @@
-FROM node:lts-bullseye as build-step
-
-RUN mkdir -p /app
+FROM node:latest as build
 
 WORKDIR /app
 
-COPY package.json /app
+COPY package*.json ./
 
-RUN npm i
+RUN npm ci
 
-COPY . /app
+RUN npm install -g @angular/cli
 
-RUN npm run build --prod
+COPY . .
 
-FROM nginx:alpine
+RUN npm run build
 
-COPY --from=build-step /app/dist/frontend /usr/share/nginx/html/
+FROM nginx:latest
+
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/dist/frontend/browser /usr/share/nginx/html
+
+EXPOSE 80
