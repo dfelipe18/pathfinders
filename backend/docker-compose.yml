@@ -10,7 +10,7 @@ services:
     networks:
       - networkDocker
     volumes:
-      - . :/home/app/uploads
+      - ./backend/src/uploads:/home/app/uploads
     links:
       - container-database
   container-database:
