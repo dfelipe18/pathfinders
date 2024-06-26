@@ -3,12 +3,12 @@ services:
   container-frontend:
     container_name: container-frontend
     build:
-      context: ./frontend
+      context: .
       dockerfile: Dockerfile
     ports:
       - "4201:80"
     networks:
       - networkDocker
-      
+
 networks:
   networkDocker:
