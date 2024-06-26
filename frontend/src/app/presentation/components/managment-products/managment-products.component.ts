@@ -3,9 +3,11 @@ import { DOCUMENT } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import {
   FormControl,
   FormGroup,
+  FormBuilder,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -18,6 +20,7 @@ import {
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatButtonModule,
   ],
   templateUrl: './managment-products.component.html',
   styleUrl: './managment-products.component.scss',
@@ -26,14 +29,20 @@ export class ManagmentProductsComponent implements OnInit {
   currentRoute: string = '';
   titlePage: string = '';
 
-  productForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    brand: new FormControl(''),
-    description: new FormControl(''),
-    price: new FormControl(''),
-  });
+  productForm: FormGroup;
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private formBuilder: FormBuilder
+  ) {
+    this.productForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      brand: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required],
+      quantity: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     const url = this.document.location.href;
@@ -54,5 +63,11 @@ export class ManagmentProductsComponent implements OnInit {
     this.titlePage = '¡Edita tu producto!';
   }
 
-  updateErrorMessage() {}
+  onSubmit() {
+    if (this.productForm.valid) {
+      console.log(this.productForm.value);
+    } else {
+      console.log('Form not valid');
+    }
+  }
 }

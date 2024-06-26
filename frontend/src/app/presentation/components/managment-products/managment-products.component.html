@@ -1,40 +1,78 @@
-<h2 class="title">{{ titlePage }}</h2>
+<h2 class="title">
+  {{ titlePage }} <mat-icon class="icon">assignment</mat-icon>
+</h2>
 
 <div class="container-form">
-  <form class="form-control" [formGroup]="productForm">
+  <form class="form-control" [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div class="field">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="input input-name">
         <mat-label>Nombre:</mat-label>
-        <input matInput required placeholder="Nombre del producto" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input
+          id="name"
+          formControlName="name"
+          matInput
+          required
+          placeholder="Nombre del producto"
+        />
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="input input-brand">
         <mat-label>Marca:</mat-label>
-        <input matInput required placeholder="Marca del producto" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input
+          id="brand"
+          formControlName="brand"
+          matInput
+          required
+          placeholder="Marca del producto"
+        />
       </mat-form-field>
     </div>
     <div class="field">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="input input-desc">
         <mat-label>Descripción:</mat-label>
-        <input matInput required placeholder="Descripción del producto" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input
+          id="description"
+          formControlName="description"
+          matInput
+          required
+          placeholder="Descripción del producto"
+        />
       </mat-form-field>
     </div>
     <div class="field">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="input input-price">
         <mat-label>Precio:</mat-label>
-        <input matInput required placeholder="Precio del producto" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input
+          id="price"
+          formControlName="price"
+          matInput
+          type="number"
+          required
+          placeholder="Precio del producto"
+        />
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="input input-quantity">
         <mat-label>Cantidad:</mat-label>
-        <input matInput required placeholder="Cantidad disponible" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input
+          id="quantity"
+          formControlName="quantity"
+          matInput
+          required
+          placeholder="Cantidad disponible"
+        />
       </mat-form-field>
     </div>
-    <div class="field"></div>
+    <div class="field container-buttons">
+      <button mat-stroked-button class="button button-cancel">Cancelar</button>
+      <button
+        type="submit"
+        [disabled]="productForm.invalid"
+        mat-flat-button
+        class="button button-add"
+      >
+        Agregar
+      </button>
+    </div>
   </form>
 </div>
