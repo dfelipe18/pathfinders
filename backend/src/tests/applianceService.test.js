@@ -35,7 +35,7 @@ describe('ApplianceService', () => {
 
   it('should delete an appliance', async () => {
     const applianceId = '1';
-    const applianceIdError = '2';
+    const applianceIdError = '3';
     Appliance.findByIdAndDelete.mockResolvedValue({ _id: applianceId });
 
     const deletedAppliance = await applianceService.delete(applianceId);
