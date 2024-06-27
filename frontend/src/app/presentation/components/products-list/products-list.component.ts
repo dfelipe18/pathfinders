@@ -5,6 +5,7 @@ import { IResGetAppliances } from '../../../infrastructure/models/appliances.mod
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
@@ -16,8 +17,14 @@ import { MatDividerModule } from '@angular/material/divider';
 export class ProductsListComponent {
   dataAppliances!: IResGetAppliances[];
 
-  constructor(private service: AppliancesService) {
+  constructor(
+    private service: AppliancesService,
+    private router: Router) {
     this.onCallAppliances();
+  }
+
+  editAppliance(applianceId: string) {
+    this.router.navigate(['/edit-appliance', { queryParams: { productId: applianceId } }]);
   }
 
   onCallAppliances(): void {
@@ -29,5 +36,17 @@ export class ProductsListComponent {
         console.log(err);
       },
     });
+  }
+
+  onCallDeleteAppliance(applianceId: string): void {
+    this.service.deleteAppliance(applianceId).subscribe({
+      next: () => {
+        console.log('Electrodomestico eliminado correctamente');
+        //Aca deberia de ir una forma de refrescar
+      },
+      error: err => {
+        console.log('Error eliminando el electrodomestico' + err)
+      }
+    })
   }
 }

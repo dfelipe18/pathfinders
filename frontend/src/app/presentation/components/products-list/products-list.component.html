@@ -13,9 +13,14 @@
     <mat-card-content class="container-content">
       Descripción: {{ appliance.description }}
     </mat-card-content>
+	<div class="container-buttons" >
+      <button (onClick)="editAppliance(appliance._id)" mat-flat-button class="button button-add"> Editar </button>
+      <button (onClick)="onCallDeleteAppliance(appliance._id)" mat-stroked-button class="button button-cancel">Eliminar</button>
+    </div>
   </mat-card>
 </div>
 
 <div class="empty-appliances" *ngIf="!dataAppliances">
   No tienes electrodomésticos por el momento
 </div>
+
