@@ -3,6 +3,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 import { ManagmentProductsComponent } from './managment-products.component';
+import { ActivatedRoute, provideRouter } from '@angular/router';
+import { routes } from '../../../app.routes';
 
 describe('ManagmentProductsComponent', () => {
   let component: ManagmentProductsComponent;
@@ -11,7 +13,7 @@ describe('ManagmentProductsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ManagmentProductsComponent],
-      providers: [provideHttpClient(), provideNoopAnimations()],
+      providers: [provideHttpClient(), provideNoopAnimations(), provideRouter(routes)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ManagmentProductsComponent);
