@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import {
   IDeleteAppliance,
@@ -13,7 +13,19 @@ import {
   providedIn: 'root',
 })
 export class AppliancesService {
-  private products = new Subject<IResGetAppliances[]>();
+  private products = new BehaviorSubject<IResGetAppliances[]>([
+    {
+      _id: '',
+      name: '',
+      brand: '',
+      description: '',
+      image: null,
+      price: 0,
+      quantity: 0,
+      __v: 0,
+      imageUrl: null,
+    },
+  ]);
 
   constructor(private http: HttpClient) {}
 
@@ -69,7 +81,7 @@ export class AppliancesService {
   }
 
   getConsultedProducts(): Observable<IResGetAppliances[]> {
-    return this.products;
+    return this.products.asObservable();
   }
 
   setConsultedProducts(products: IResGetAppliances[]): void {
