@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class AppliancesService {
-  private products!: Subject<IResGetAppliances[]>;
+  private products = new Subject<IResGetAppliances[]>();
 
   constructor(private http: HttpClient) {}
 
