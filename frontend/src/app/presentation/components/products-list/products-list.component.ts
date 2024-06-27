@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products-list',
@@ -19,12 +20,16 @@ export class ProductsListComponent {
 
   constructor(
     private service: AppliancesService,
-    private router: Router) {
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {
     this.onCallAppliances();
   }
 
   editAppliance(applianceId: string) {
-    this.router.navigate(['/edit-appliance', { queryParams: { productId: applianceId } }]);
+    this.router.navigate(['/editar-productos'], {
+      state: { productId: applianceId },
+    });
   }
 
   onCallAppliances(): void {
@@ -32,8 +37,11 @@ export class ProductsListComponent {
       next: (data: IResGetAppliances[]) => {
         this.dataAppliances = data;
       },
-      error: (err: any) => {
-        console.log(err);
+      error: () => {
+        this.openSnackBar(
+          'No pudimos consultar los productos por el momento.',
+          'cerrar'
+        );
       },
     });
   }
@@ -41,12 +49,24 @@ export class ProductsListComponent {
   onCallDeleteAppliance(applianceId: string): void {
     this.service.deleteAppliance(applianceId).subscribe({
       next: () => {
-        console.log('Electrodomestico eliminado correctamente');
-        //Aca deberia de ir una forma de refrescar
+        this.dataAppliances = this.dataAppliances.filter(
+          (appliance) => appliance._id !== applianceId
+        );
+        this.openSnackBar('Producto eliminado satisfactoriamente.', 'cerrar');
       },
-      error: err => {
-        console.log('Error eliminando el electrodomestico' + err)
-      }
-    })
+      error: () => {
+        this.openSnackBar(
+          'No pudimos eliminar el producto por el momento.',
+          'cerrar'
+        );
+      },
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+      verticalPosition: 'top',
+    });
   }
 }

@@ -1,5 +1,6 @@
 .container-appliance {
   width: 25rem;
+  padding: 2rem 0;
 }
 
 .title {
@@ -20,4 +21,20 @@
 
 .container-content {
   margin-top: 1rem;
+}
+
+.empty-appliances {
+  display: flex;
+  justify-content: center;
+}
+
+.container-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.button {
+  width: 7rem;
 }

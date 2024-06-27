@@ -1,26 +1,42 @@
-<h2 class="title">Electrodomésticos</h2>
-<div class="container-elements">
-  <mat-card
-    appearance="outlined"
-    class="container-appliance"
-    *ngFor="let appliance of dataAppliances"
-  >
-    <mat-card-header class="container-header">
-      <mat-card-title>Marca: {{ appliance.brand }}</mat-card-title>
-      <mat-card-subtitle>Nombre: {{ appliance.name }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    <mat-card-content class="container-content">
-      Descripción: {{ appliance.description }}
-    </mat-card-content>
-	<div class="container-buttons" >
-      <button (onClick)="editAppliance(appliance._id)" mat-flat-button class="button button-add"> Editar </button>
-      <button (onClick)="onCallDeleteAppliance(appliance._id)" mat-stroked-button class="button button-cancel">Eliminar</button>
+<div class="container-general">
+  <h2 class="title">Electrodomésticos</h2>
+  <div class="container-elements">
+    <div
+      class="container-card"
+      class="container-appliance"
+      *ngFor="let appliance of dataAppliances"
+    >
+      <mat-card appearance="outlined">
+        <mat-card-header class="container-header">
+          <mat-card-title>Marca: {{ appliance.brand }}</mat-card-title>
+          <mat-card-subtitle>Nombre: {{ appliance.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="container-content">
+          Descripción: {{ appliance.description }}
+        </mat-card-content>
+        <div class="container-buttons">
+          <button
+            type="button"
+            (click)="editAppliance(appliance._id)"
+            mat-flat-button
+            class="button button-edit"
+          >
+            Editar
+          </button>
+          <button
+            type="button"
+            (click)="onCallDeleteAppliance(appliance._id)"
+            mat-stroked-button
+            class="button button-delete"
+          >
+            Eliminar
+          </button>
+        </div>
+      </mat-card>
     </div>
-  </mat-card>
+  </div>
+  <div class="empty-appliances" *ngIf="!dataAppliances || dataAppliances.length === 0">
+    No tienes electrodomésticos por el momento
+  </div>
 </div>
-
-<div class="empty-appliances" *ngIf="!dataAppliances">
-  No tienes electrodomésticos por el momento
-</div>
-
