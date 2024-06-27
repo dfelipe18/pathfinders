@@ -19,7 +19,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AppliancesService } from '../../../infrastructure/services/appliances/appliances.service';
-import { IRequestBodyAppliances } from '../../../infrastructure/models/appliances.model';
+import { IModifyBodyAppliances, IRequestBodyAppliances } from '../../../infrastructure/models/appliances.model';
 
 @Component({
   selector: 'app-managment-products',
@@ -64,7 +64,6 @@ export class ManagmentProductsComponent implements OnInit {
     } else {
       this.onOrganiceEditView();
     }
-    this.openSnackBar('lelele', 'epepe');
   }
 
   onOrganiceCreateView(): void {
@@ -78,16 +77,40 @@ export class ManagmentProductsComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 3000,
-      verticalPosition: 'top'
+      verticalPosition: 'top',
     });
   }
 
   onSubmit() {
-    if (this.productForm.valid) {
-      this.service.setAppliance(this.productForm.value).subscribe({
-        next: (data: IRequestBodyAppliances) => {},
-        error: (err: Error) => {},
-      });
+    if (this.productForm.valid && this.currentRoute === 'crear-productos') {
+      this.onEditProduct();
+    } else if (
+      this.productForm.valid &&
+      this.currentRoute === 'editar-productos'
+    ) {
+      this.onCreatetProduct();
     }
+  }
+
+  onCreatetProduct(): void {
+    this.service.setAppliance(this.productForm.value).subscribe({
+      next: () => {
+        this.openSnackBar('¡Producto creado satisfactoriamente!', 'cerrar');
+      },
+      error: (err: Error) => {
+        this.openSnackBar('Lamentablemente no pudimos crear el producto', 'cerrar');
+      },
+    });
+  }
+
+  onEditProduct(): void {
+    this.service.modifyAppliance(this.productForm.value, '').subscribe({
+      next: () => {
+        this.openSnackBar('¡Producto modificado satisfactoriamente!', 'cerrar');
+      },
+      error: (err: Error) => {
+        this.openSnackBar('Lamentablemente no pudimos modificar el producto', 'cerrar');
+      },
+    })
   }
 }
